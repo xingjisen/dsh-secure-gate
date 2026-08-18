@@ -59,8 +59,7 @@
     },
     "client": {
       "inject": [],
-      "platform": "web",
-      "immediately": true
+      "platform": "web"
     }
   },
   "dependencies": {},
