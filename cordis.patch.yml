@@ -1,0 +1,63 @@
+# dsh-secure-gate — 高级安全认证网关
+# ==========================================
+#
+# 安装:
+#   dsh plugin --profile web add dsh-secure-gate
+#   # 或从 GitHub: dsh plugin --profile web add github:你的用户名/dsh-secure-gate
+#
+# 重启 dsh web 后，浏览器访问会跳转到安全登录页面。
+# 首次启动自动引导创建管理员账号。
+#
+# 安全特性:
+#   ✅ Argon2id 密码哈希 (OWASP 推荐)
+#   ✅ CSRF 双重提交 Cookie 保护
+#   ✅ 账户锁定 (多次失败自动锁定)
+#   ✅ 永久锁定 (连续锁定期后)
+#   ✅ IP 白名单/黑名单/仅内网模式
+#   ✅ 速率限制 + 指数退避
+#   ✅ HMAC-SHA256 签名会话 Cookie
+#   ✅ 密码强度强制 + 过期策略
+#   ✅ 审计日志 (JSONL, 0600 权限)
+#   ✅ 会话管理 (查看/撤销活跃会话)
+#   ✅ TOTP 两步验证 + 备份恢复码
+#   ✅ WebAuthn/Passkey 预备
+#   ✅ CSP + HSTS + XFO + XSS 安全标头
+#   ✅ 账户管理 (设置页面)
+
+- insert:
+    - id: secure-gate
+      name: 'dsh-secure-gate'
+      config:
+        enabled: true
+        bootstrap:
+          username: admin
+          password: ''
+        session:
+          cookieName: dsh_secure_session
+          ttlSeconds: 86400
+          secure: false
+          sameSite: strict
+        rateLimit:
+          maxAttempts: 5
+          windowMs: 900000
+        lockout:
+          maxFailedAttempts: 5
+          lockoutDurationMs: 1800000
+          permanentAfter: 3
+        passwordPolicy:
+          minLength: 10
+          requireUpper: true
+          requireLower: true
+          requireDigit: true
+          requireSpecial: true
+          maxAgeDays: 90
+        csrf:
+          enabled: true
+        ipAccess:
+          allowPrivateOnly: false
+          allowlist: []
+          blocklist: []
+        audit:
+          enabled: true
+        csp:
+          enabled: true
