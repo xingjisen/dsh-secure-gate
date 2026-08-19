@@ -3,3 +3,8 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+# local test scratch
+_*.*
+=10
+login-page.new.js
+login-page.new2.js
