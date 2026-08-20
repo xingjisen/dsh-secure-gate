@@ -1,7 +1,7 @@
 {
   "name": "dsh-secure-gate",
   "version": "1.0.0",
-  "description": "🛡️ 高级安全认证网关 for DeepSeek Harness — Argon2id 密码、CSRF 保护、账户锁定、IP 访问控制、审计日志、会话管理、TOTP 两步验证、WebAuthn/Passkey 预备。零配置启动，即装即用。",
+  "description": "🛡️ DeepSeek Harness 高级安全认证网关：支持 Argon2id 密码、CSRF 保护、账户锁定、IP 访问控制、审计日志、会话管理、TOTP 两步验证及 WebAuthn/通行密钥预备。零配置启动，即装即用。",
   "keywords": [
     "dsh",
     "dsh-plugin",
